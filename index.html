@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>鴻海 AI 重估偵測系統</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 頂部標題列 -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="logo-dot"></div>
+      <span class="logo-text">HON HAI <span class="accent">AI MONITOR</span></span>
+    </div>
+    <div class="topbar-right">
+      <span class="status-badge live">● LIVE</span>
+      <span class="update-time" id="updateTime">更新中...</span>
+    </div>
+  </header>
+
+  <!-- 主標題區 -->
+  <section class="hero">
+    <div class="hero-label">SYSTEM OBJECTIVE</div>
+    <h1 class="hero-title">抓住市場<br/><span class="accent">開始相信成長</span><br/>的那一刻</h1>
+    <p class="hero-sub">自動監測鴻海財務與營運指標，於 AI 重估信號觸發時即時通知</p>
+  </section>
+
+  <!-- 系統流程圖 -->
+  <section class="section">
+    <div class="section-label">ARCHITECTURE</div>
+    <div class="pipeline">
+      <div class="pipe-step">
+        <div class="pipe-icon">📡</div>
+        <div class="pipe-name">資料抓取</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <div class="pipe-icon">🗂️</div>
+        <div class="pipe-name">資料整理</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <div class="pipe-icon">📐</div>
+        <div class="pipe-name">指標計算</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <div class="pipe-icon">⏱️</div>
+        <div class="pipe-name">時間對齊</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <div class="pipe-icon">🎯</div>
+        <div class="pipe-name">訊號判斷</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step active">
+        <div class="pipe-icon">📢</div>
+        <div class="pipe-name">通知</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 三大核心狀態卡片 -->
+  <section class="section">
+    <div class="section-label">SIGNAL STATUS</div>
+    <div class="signal-grid">
+
+      <!-- Level 1 -->
+      <div class="signal-card level1" id="card-level1">
+        <div class="card-header">
+          <span class="level-tag">Level 1</span>
+          <span class="level-status" id="status1">WATCHING</span>
+        </div>
+        <div class="card-title">趨勢形成</div>
+        <div class="card-subtitle">Early Signal</div>
+        <div class="conditions">
+          <div class="cond-row">
+            <span class="cond-label">月營收 YoY</span>
+            <span class="cond-value" id="rev-yoy">— %</span>
+            <span class="cond-threshold">&gt; 25%</span>
+            <span class="cond-icon" id="icon-rev-yoy">○</span>
+          </div>
+          <div class="cond-row">
+            <span class="cond-label">毛利率 QoQ</span>
+            <span class="cond-value" id="gm-qoq">— %</span>
+            <span class="cond-threshold">↑ 上升</span>
+            <span class="cond-icon" id="icon-gm-qoq">○</span>
+          </div>
+        </div>
+        <div class="card-meaning">AI 開始發酵中</div>
+      </div>
+
+      <!-- Level 2 -->
+      <div class="signal-card level2" id="card-level2">
+        <div class="card-header">
+          <span class="level-tag">Level 2</span>
+          <span class="level-status" id="status2">WATCHING</span>
+        </div>
+        <div class="card-title">接近觸發</div>
+        <div class="card-subtitle">Approaching</div>
+        <div class="conditions">
+          <div class="cond-row">
+            <span class="cond-label">EPS 進度</span>
+            <span class="cond-value" id="eps-val">— 元</span>
+            <span class="cond-threshold">接近 4.0</span>
+            <span class="cond-icon" id="icon-eps-near">○</span>
+          </div>
+          <div class="cond-row">
+            <span class="cond-label">毛利率進度</span>
+            <span class="cond-value" id="gm-val">— %</span>
+            <span class="cond-threshold">接近 7.5%</span>
+            <span class="cond-icon" id="icon-gm-near">○</span>
+          </div>
+        </div>
+        <div class="card-meaning">業績接近證明門檻</div>
+      </div>
+
+      <!-- Level 3 -->
+      <div class="signal-card level3" id="card-level3">
+        <div class="card-header">
+          <span class="level-tag">Level 3</span>
+          <span class="level-status" id="status3">WAITING</span>
+        </div>
+        <div class="card-title">正式觸發</div>
+        <div class="card-subtitle">TRIGGER 🔥</div>
+        <div class="conditions">
+          <div class="cond-row">
+            <span class="cond-label">EPS ≥ 4.5</span>
+            <span class="cond-value" id="eps-trigger">—</span>
+            <span class="cond-threshold">≥ 4.5 元</span>
+            <span class="cond-icon" id="icon-eps-trigger">○</span>
+          </div>
+          <div class="cond-row">
+            <span class="cond-label">EPS QoQ 成長</span>
+            <span class="cond-value" id="eps-qoq">—</span>
+            <span class="cond-threshold">↑ 正成長</span>
+            <span class="cond-icon" id="icon-eps-qoq">○</span>
+          </div>
+          <div class="cond-row">
+            <span class="cond-label">毛利率 ≥ 7.5%</span>
+            <span class="cond-value" id="gm-trigger">—</span>
+            <span class="cond-threshold">≥ 7.5%</span>
+            <span class="cond-icon" id="icon-gm-trigger">○</span>
+          </div>
+          <div class="cond-row warning-row">
+            <span class="cond-label">本益比防呆</span>
+            <span class="cond-value" id="pe-val">—</span>
+            <span class="cond-threshold">&lt; 18–20x</span>
+            <span class="cond-icon" id="icon-pe">○</span>
+          </div>
+        </div>
+        <div class="card-meaning">市場開始重估</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 指標詳細數據 -->
+  <section class="section">
+    <div class="section-label">KEY METRICS</div>
+    <div class="metrics-grid">
+      <div class="metric-block">
+        <div class="metric-category">🟢 領先指標</div>
+        <div class="metric-row"><span>月營收 YoY</span><span class="metric-val" id="m-rev-yoy">—</span></div>
+        <div class="metric-row"><span>季營收 QoQ</span><span class="metric-val" id="m-rev-qoq">—</span></div>
+        <div class="metric-row"><span>毛利率 QoQ 變化</span><span class="metric-val" id="m-gm-delta">—</span></div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-category">🟡 結構指標</div>
+        <div class="metric-row"><span>毛利率</span><span class="metric-val" id="m-gm">—</span></div>
+        <div class="metric-row"><span>營業利益率</span><span class="metric-val" id="m-op">—</span></div>
+        <div class="metric-row"><span>AI 營收占比</span><span class="metric-val" id="m-ai">— (估)</span></div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-category">🔴 核心指標</div>
+        <div class="metric-row"><span>EPS（單季）</span><span class="metric-val" id="m-eps">—</span></div>
+        <div class="metric-row"><span>EPS QoQ</span><span class="metric-val" id="m-eps-qoq">—</span></div>
+        <div class="metric-row"><span>本益比（PE）</span><span class="metric-val" id="m-pe">—</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 風險提示 -->
+  <section class="section">
+    <div class="section-label">RISK ALERTS</div>
+    <div class="risk-grid">
+      <div class="risk-card">
+        <div class="risk-icon">⚠️</div>
+        <div class="risk-title">時間錯位</div>
+        <div class="risk-desc">所有指標已對齊同一季度，月營收已自動加總為季度數據</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-icon">⏳</div>
+        <div class="risk-title">財報延遲</div>
+        <div class="risk-desc">季報落後 1–1.5 個月，系統自動使用最新一期可得數據</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-icon">🔍</div>
+        <div class="risk-title">AI 營收難抓</div>
+        <div class="risk-desc">以「毛利率 + 營收成長」作為 AI 滲透率的 Proxy 替代指標</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-icon">💹</div>
+        <div class="risk-title">本益比忽略</div>
+        <div class="risk-desc">EPS 達標但股價不動，可能市場已提前反映，PE 防呆必啟用</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部三大邏輯 -->
+  <section class="section">
+    <div class="section-label">SYSTEM LOGIC</div>
+    <div class="logic-row">
+      <div class="logic-block">
+        <div class="logic-num">01</div>
+        <div class="logic-title">找趨勢開始</div>
+        <div class="logic-desc">營收 + 毛利<br/>Early Signal</div>
+      </div>
+      <div class="logic-connector">▶</div>
+      <div class="logic-block">
+        <div class="logic-num">02</div>
+        <div class="logic-title">找業績證明</div>
+        <div class="logic-desc">EPS 達標<br/>Fundamental Proof</div>
+      </div>
+      <div class="logic-connector">▶</div>
+      <div class="logic-block">
+        <div class="logic-num">03</div>
+        <div class="logic-title">找市場重估</div>
+        <div class="logic-desc">EPS + PE 變化<br/>Market Re-rating</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部 -->
+  <footer class="footer">
+    <span>鴻海 AI 重估偵測系統 · 僅供研究參考，非投資建議</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
