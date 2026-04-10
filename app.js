@@ -1,3 +1,4 @@
+const FINMIND_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRlIjoiMjAyNi0wNC0xMCAxOTozNToxNiIsInVzZXJfaWQiOiJmaW4xMTA5IiwiaXAiOiIxMTguMTUwLjk0Ljg4IiwiZXhwIjoxNzc2NDI1NzE2fQ.ZQDLDgP59ty7aE_7r7etUd5ydY7bVkRAioWyCqyZT6c'
 /* ================================================
    鴻海 AI 重估偵測系統 — app.js
    邏輯：指標計算 → 訊號判斷 → UI 更新
